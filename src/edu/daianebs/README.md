@@ -12,6 +12,6 @@ Com base no vídeo de lançamento do iPhone conforme link abaixo, elabore em uma
 
 Diagrama realizado por DaianeBs
 
-![1721334209267](images/README/1721334209267.png)
+![1721334209267](images/README/diagramaUMLdaianeBS.png)
 
 **Ferramenta de UML:** Escolhi usar o Miro para criar os diagramas das classes e interfaces.

@@ -16,12 +16,14 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
   @Override
   public void ligar(String numero) {
     Contact contact = contacts.stream().filter(contacts -> contacts.getNome().equals(numero)).findFirst().orElse(null);
+    // Atualizado o método ligar para verificar se o número fornecido corresponde a
+    // um contato existente e exibir o nome do contato, se encontrado.
     if (contact != null) {
-        System.out.println("Ligando para " + contact.getNome() + " (" + contact.getNumero() + ")");
+      System.out.println("Ligando para " + contact.getNome() + " (" + contact.getNumero() + ")");
     } else {
-        System.out.println("Ligando para " + numero);
+      System.out.println("Ligando para " + numero);
     }
-}
+  }
 
   @Override
   public void atender() {
@@ -50,7 +52,7 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
     return new ArrayList<>(contacts);
   }
 
-   // Funções de música
+  // Funções de música
   @Override
   public void tocarMusica(String musica) {
     System.out.println("Tocando música: " + musica);
@@ -105,10 +107,10 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
   }
 
   @Override
-  public void favoritarPagina(String url) {
-    favorites.add(new URLFavorite("Favorito", url));
-    System.out.println("Página favoritada: " + url);
-  }
+  public void favoritarPagina(URLFavorite urlFavorite){
+  favorites.add(urlFavorite);
+  System.out.println("Página favoritada: " + urlFavorite.getNome() + " (" + urlFavorite.getUrl() + ")");
+}
 
   @Override
   public void removerFavorito(String url) {
@@ -120,8 +122,10 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
   public List<String> listarFavoritos() {
     List<String> favoriteUrls = new ArrayList<>();
     for (URLFavorite favorite : favorites) {
-      favoriteUrls.add(favorite.getUrl());
-    }
-    return favoriteUrls;
+      favoriteUrls.add(favorite.getNome() + " (" + favorite.getUrl() + ")");
+  }
+  System.out.println("Minhas páginas favoritas: " + String.join(", "));
+  return favoriteUrls;
   }
 }
+    
