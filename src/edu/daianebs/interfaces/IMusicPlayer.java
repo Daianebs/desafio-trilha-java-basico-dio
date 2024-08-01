@@ -7,7 +7,7 @@ public interface IMusicPlayer {
     void tocarMusica(String musica);
     void pausarMusica();
     void selecionarMusica(String musica);
-    List<String> listarMusicas(Music musica);
+    List<String> listarMusicas();
     void adicionarMusica(Music musica);
     void removerMusica(String nome);
 }

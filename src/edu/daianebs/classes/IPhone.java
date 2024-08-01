@@ -12,10 +12,16 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
   private List<Music> musics = new ArrayList<>();
   private List<URLFavorite> favorites = new ArrayList<>();
 
+  // Funções de telefone
   @Override
   public void ligar(String numero) {
-    System.out.println("Ligando para " + numero);
-  }
+    Contact contact = contacts.stream().filter(contacts -> contacts.getNome().equals(numero)).findFirst().orElse(null);
+    if (contact != null) {
+        System.out.println("Ligando para " + contact.getNome() + " (" + contact.getNumero() + ")");
+    } else {
+        System.out.println("Ligando para " + numero);
+    }
+}
 
   @Override
   public void atender() {
@@ -44,6 +50,7 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
     return new ArrayList<>(contacts);
   }
 
+   // Funções de música
   @Override
   public void tocarMusica(String musica) {
     System.out.println("Tocando música: " + musica);
@@ -63,8 +70,9 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
   public List<String> listarMusicas() {
     List<String> musicList = new ArrayList<>();
     for (Music music : musics) {
-      musicList.add(music.getNome());
+      musicList.add(music.getNome() + " - " + music.getArtista());
     }
+    System.out.println("Minhas músicas: " + String.join("; "));
     return musicList;
   }
 
@@ -80,6 +88,7 @@ public class IPhone implements IPhoneDevice, IMusicPlayer, IWebBrowser {
     System.out.println("Música removida: " + nome);
   }
 
+  // Funções de navegador
   @Override
   public void exibirPagina(String url) {
     System.out.println("Exibindo página: " + url);
